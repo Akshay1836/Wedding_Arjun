@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Manrope:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Manrope", system-ui, sans-serif;
+    color: #44403c;
+    background-color: #fffdf8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 500ms ease, color 500ms ease;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(235, 192, 200, 0.2), transparent 45%),
+      radial-gradient(circle at 80% 20%, rgba(224, 201, 145, 0.2), transparent 42%),
+      linear-gradient(180deg, #fffdf8 0%, #fff8ee 55%, #fffdf8 100%);
+  }
+
+  .dark body {
+    color: #f5f5f4;
+    background-color: #0c0a09;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(111, 74, 81, 0.22), transparent 45%),
+      radial-gradient(circle at 80% 20%, rgba(120, 99, 62, 0.2), transparent 42%),
+      linear-gradient(180deg, #0f0f11 0%, #151417 55%, #0f0f11 100%);
+  }
+
+  * {
+    border-color: #e7e5e4;
+  }
+}
+
+@layer components {
+  .ornament {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.35;
+  }
+}
