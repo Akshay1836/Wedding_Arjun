@@ -61,7 +61,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel }) 
   return (
     <MotionSection
       id="home"
-      className="relative isolate flex min-h-screen items-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-10 md:min-h-screen md:pb-12 md:pt-12"
+      className="relative isolate flex min-h-screen items-start md:items-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-10 md:min-h-screen md:pb-12 md:pt-12"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

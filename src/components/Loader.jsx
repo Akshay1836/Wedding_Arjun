@@ -79,20 +79,14 @@ function Loader({ bride, groom, isDark }) {
         ))}
       </div>
 
-      <MotionDiv className="relative text-center" variants={animations.modalContent} initial="hidden" animate="visible">
+      <MotionDiv className="relative text-center mt-40 sm:mt-8 md:mt-16 lg:mt-20" variants={animations.modalContent} initial="hidden" animate="visible">
         <MotionDiv
-          className="relative mx-auto mb-6 h-[44vw] min-h-[170px] max-h-[260px] w-11/12 max-w-[340px] sm:h-[210px] sm:w-[320px]"
+          className="relative mx-auto mb-36 sm:mb-10 md:mb-14 lg:mb-16 h-[44vw] min-h-[170px] max-h-[260px] w-11/12 max-w-[340px] sm:h-[210px] sm:w-[320px]"
           animate={
             animations.reduced
               ? undefined
               : {
                   y: [0, -3, 0],
-                }
-          }
-          transition={
-            animations.reduced
-              ? undefined
-              : {
                   duration: 3.8,
                   repeat: Infinity,
                   ease: "easeInOut",
@@ -101,7 +95,7 @@ function Loader({ bride, groom, isDark }) {
         >
           <div className="absolute inset-x-0 top-[16%] z-[60] mx-auto w-10/12 max-w-[260px] sm:top-[34px] sm:w-[240px]">
             <MotionDiv
-              className={`h-[24vw] min-h-[90px] max-h-[140px] rounded-xl border px-4 pt-4 text-center sm:h-[128px] ${
+                className={`h-[18vw] min-h-[70px] max-h-[110px] rounded-xl border px-2 pt-3 text-center sm:h-[128px] ${
                 isDark
                   ? "border-gold-500/25 bg-stone-800/95 text-gold-300"
                   : "border-gold-200/70 bg-white text-gold-700"
@@ -126,10 +120,12 @@ function Loader({ bride, groom, isDark }) {
               }
             >
               <p className="text-[10px] font-semibold uppercase tracking-[0.28em]">Invitation</p>
-              <p className="mt-2 whitespace-nowrap font-['Cormorant_Garamond'] text-[1rem] font-semibold leading-none">
-                {groom}
-                <span className="mx-1.5 inline-block align-middle font-['Great_Vibes'] text-[0.82em]">&amp;</span>
-                {bride}
+              <p className="mt-2 font-['Cormorant_Garamond'] text-[0.65rem] sm:text-[0.85rem] font-medium leading-tight">
+                <span>{groom}</span>
+                <br />
+                <span className="inline-block align-middle font-['Great_Vibes'] text-[0.8em]">&amp;</span>
+                <br />
+                <span>{bride}</span>
               </p>
             </MotionDiv>
 
@@ -296,25 +292,26 @@ function Loader({ bride, groom, isDark }) {
             : null}
         </MotionDiv>
         <p
-          className={`font-['Cormorant_Garamond'] text-[clamp(2rem,5vw,2.7rem)] font-semibold leading-none ${
+          className={`font-['Cormorant_Garamond'] text-[clamp(1rem,2.5vw,1.3rem)] font-medium leading-tight ${
             isDark ? "text-gold-300" : "text-gold-700"
-          }`}
+          } flex items-center justify-center gap-2 mt-2 mb-2`}
         >
           <span>{groom}</span>
-          <span className="mx-2 inline-block align-middle font-['Great_Vibes'] text-[0.82em]">&amp;</span>
+          <span className="inline-block align-middle font-['Great_Vibes'] text-[0.9em]">&amp;</span>
           <span>{bride}</span>
         </p>
 
-        <p className={`mt-2 text-xs uppercase tracking-[0.35em] ${isDark ? "text-stone-300" : "text-stone-500"}`}>
-          Loading invitation
-          <MotionSpan
-            className="inline-block"
-            animate={animations.reduced ? undefined : { opacity: [0, 1, 0] }}
-            transition={animations.reduced ? undefined : { duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+        {/* Spinning gold heart loader */}
+        <div className="mt-6 flex justify-center">
+          <motion.span
+            className={isDark ? "text-gold-300 text-3xl" : "text-gold-700 text-3xl"}
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+            aria-label="Loading"
           >
-            ...
-          </MotionSpan>
-        </p>
+            ♥
+          </motion.span>
+        </div>
       </MotionDiv>
     </MotionDiv>
   )

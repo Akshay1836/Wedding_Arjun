@@ -174,7 +174,7 @@ export default function WelcomeSection({ bride, groom, locationLabel }) {
       {/* ── Text block ───────────────────────────────────────── */}
       <div className="relative z-10 px-6 text-center">
         <Reveal variant="fadeIn">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.38em] text-gold-700 dark:text-gold-300">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.38em] text-gold-700 dark:text-gold-300 mb-4 sm:mb-6">
             {groom} &amp; {bride}
           </p>
         </Reveal>
