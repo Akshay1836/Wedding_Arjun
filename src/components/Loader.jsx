@@ -81,7 +81,7 @@ function Loader({ bride, groom, isDark }) {
 
       <MotionDiv className="relative text-center" variants={animations.modalContent} initial="hidden" animate="visible">
         <MotionDiv
-          className="relative mx-auto mb-6 h-[210px] w-[320px]"
+          className="relative mx-auto mb-6 h-[44vw] min-h-[170px] max-h-[260px] w-11/12 max-w-[340px] sm:h-[210px] sm:w-[320px]"
           animate={
             animations.reduced
               ? undefined
@@ -99,9 +99,9 @@ function Loader({ bride, groom, isDark }) {
                 }
           }
         >
-          <div className="absolute inset-x-0 top-[34px] z-[60] mx-auto w-[240px]">
+          <div className="absolute inset-x-0 top-[16%] z-[60] mx-auto w-10/12 max-w-[260px] sm:top-[34px] sm:w-[240px]">
             <MotionDiv
-              className={`h-[128px] rounded-xl border px-4 pt-4 text-center ${
+              className={`h-[24vw] min-h-[90px] max-h-[140px] rounded-xl border px-4 pt-4 text-center sm:h-[128px] ${
                 isDark
                   ? "border-gold-500/25 bg-stone-800/95 text-gold-300"
                   : "border-gold-200/70 bg-white text-gold-700"
@@ -162,7 +162,7 @@ function Loader({ bride, groom, isDark }) {
           </div>
 
           <MotionDiv
-            className={`absolute inset-x-0 bottom-0 z-20 mx-auto h-[120px] w-[270px] overflow-hidden rounded-b-[18px] border-x border-b ${
+            className={`absolute inset-x-0 bottom-0 z-20 mx-auto h-[22vw] min-h-[70px] max-h-[120px] w-10/12 max-w-[220px] overflow-hidden rounded-b-[18px] border-x border-b sm:h-[120px] sm:w-[270px] ${
               isDark
                 ? "border-gold-500/25 bg-gradient-to-b from-stone-800/95 to-stone-900/90"
                 : "border-gold-300/60 bg-gradient-to-b from-white to-ivory-100"
@@ -190,7 +190,7 @@ function Loader({ bride, groom, isDark }) {
           </MotionDiv>
 
           <MotionDiv
-            className={`absolute inset-x-0 -bottom-3 z-10 mx-auto h-3 w-[172px] rounded-full blur-sm ${
+            className={`absolute inset-x-0 -bottom-3 z-10 mx-auto h-3 w-8/12 max-w-[172px] rounded-full blur-sm ${
               isDark ? "bg-black/45" : "bg-stone-500/20"
             }`}
             animate={
@@ -214,9 +214,9 @@ function Loader({ bride, groom, isDark }) {
             aria-hidden="true"
           />
 
-          <div className="absolute inset-x-0 bottom-[72px] z-40 mx-auto w-[270px]" style={{ perspective: 900 }}>
+          <div className="absolute inset-x-0 bottom-[27vw] sm:bottom-[72px] z-40 mx-auto w-10/12 max-w-[220px] sm:w-[270px]" style={{ perspective: 900 }}>
             <MotionDiv
-              className={`h-[108px] origin-bottom [clip-path:polygon(0_100%,50%_0,100%_100%)] border ${
+              className={`h-[9vw] min-h-[48px] max-h-[108px] origin-bottom [clip-path:polygon(0_100%,50%_0,100%_100%)] border sm:h-[108px] ${
                 isDark
                   ? "border-gold-500/25 bg-gradient-to-b from-stone-800/98 to-stone-900/95"
                   : "border-gold-300/60 bg-gradient-to-b from-ivory-100 to-gold-50/80"
