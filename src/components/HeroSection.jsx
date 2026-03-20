@@ -136,7 +136,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel }) 
 
       <div className="relative z-10 mx-auto max-w-3xl">
         <MotionDiv
-          className="relative overflow-hidden rounded-[1.6rem] bg-white/72 px-4 py-8 backdrop-blur-sm dark:bg-stone-900/42 md:px-7 md:py-10"
+          className="relative overflow-hidden rounded-[1.6rem] bg-white/72 px-4 py-8 backdrop-blur-sm dark:bg-stone-900/42 md:px-7 md:py-10 flex flex-col space-y-4 md:space-y-3"
           variants={itemVariants}
         >
           <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-gold-200/16 to-transparent dark:from-gold-500/6" aria-hidden="true" />
