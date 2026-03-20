@@ -66,7 +66,7 @@ function CelebrationsVibeSection({ images, bride, groom }) {
         </Reveal>
 
         <Reveal variant="fadeIn">
-          <h2 className="text-center font-['Great_Vibes'] leading-none text-gold-700 dark:text-gold-300" style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)" }}>
+          <h2 className="text-center font-['Great_Vibes'] leading-none text-gold-700 dark:text-gold-300 mt-6 sm:mt-8" style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)" }}>
             Every Moment Matters
           </h2>
         </Reveal>
