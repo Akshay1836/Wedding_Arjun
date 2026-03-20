@@ -101,24 +101,14 @@ function Loader({ bride, groom, isDark, tagline = "A celebration of love", onFin
           transition={{ duration: 1.1, delay: 0.7, ease: "easeInOut" }}
         />
 
-        {/* Names luxury reveal */}
+        {/* Names luxury reveal (elegant serif font) */}
         <motion.h1
-          className={`relative text-center font-['Great_Vibes'] text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide ${nameColor}`}
+          className={`relative text-center font-['Cormorant_Garamond'] font-bold text-2xl sm:text-3xl md:text-4xl tracking-wider ${isDark ? 'text-gold-200' : 'text-gold-700'}`}
           initial={{ opacity: 0, y: 32, filter: "blur(12px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.9, delay: 1.1, ease: "easeOut" }}
         >
-          {renderName(groom)}
-          <span className="mx-3 font-['Cormorant_Garamond'] text-2xl align-middle">&amp;</span>
-          {renderName(bride, 0.2)}
-          {/* Shimmer sweep */}
-          <motion.span
-            className={`absolute left-0 top-1/2 w-full h-8 -translate-y-1/2 pointer-events-none bg-gradient-to-r ${shimmerColor} blur-[2px]`}
-            initial={{ opacity: 0, x: -80 }}
-            animate={{ opacity: [0, 0.22, 0], x: [0, 40, 80] }}
-            transition={{ duration: 1.3, delay: 1.7, repeat: Infinity, repeatDelay: 2.2 }}
-            aria-hidden="true"
-          />
+          {groom} <span className="mx-2 font-['Great_Vibes'] text-3xl text-gold-500 dark:text-gold-400">&amp;</span> {bride}
         </motion.h1>
 
         {/* Tagline luxury fade-in */}

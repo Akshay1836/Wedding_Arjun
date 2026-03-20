@@ -39,9 +39,9 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
     visible: {
       opacity: 1,
       transition: {
-        duration: reduceMotion ? 0.3 : 0.8,
+        duration: reduceMotion ? 0.3 : 1.2,
         when: "beforeChildren",
-        staggerChildren: reduceMotion ? 0 : 0.22, // slower stagger
+        staggerChildren: reduceMotion ? 0 : 0.28, // slower stagger
       },
     },
   }
@@ -53,7 +53,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: reduceMotion ? 0.25 : 0.85,
+        duration: reduceMotion ? 0.35 : 1.1,
         ease: [0.22, 1, 0.36, 1],
       },
     },
@@ -62,11 +62,11 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
   // Unique animation variants for each element
   const introVariants = {
     hidden: { opacity: 0, scale: 0.98, filter: "blur(12px)" },
-    visible: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
   };
   const nameVariants = {
     hidden: { opacity: 0, x: -32, filter: "blur(18px)" },
-    visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } },
   };
   const ampersandVariants = {
     hidden: { opacity: 0, scale: 0.7, rotate: -30 },
@@ -78,7 +78,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
   };
   const ctaVariants = {
     hidden: { opacity: 0, scale: 0.8, y: 18 },
-    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, delay: 0.9, type: "spring", stiffness: 120 } },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, delay: 0.9, type: "spring", stiffness: 120 } },
   };
 
   // Shimmer sweep for names
@@ -87,15 +87,13 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
   return (
     <MotionSection
       id="home"
-      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-8 md:min-h-screen md:pb-12 md:pt-6"
+      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-1 sm:pt-8 md:min-h-screen md:pb-12 md:pt-6"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       <div className="pointer-events-none absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-blush-100/45 blur-[95px] dark:bg-blush-200/10" />
-        <div className="absolute -right-24 top-20 h-80 w-80 rounded-full bg-gold-100/42 blur-[105px] dark:bg-gold-300/10" />
-        <div className="absolute left-1/2 top-[72%] h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ivory-100/55 blur-[100px] dark:bg-stone-800/28" />
+        <div className="absolute left-1/2 top-1/2 h-[80vw] w-[80vw] max-h-[520px] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-100/30 blur-[90px] dark:bg-gold-300/10" />
       </div>
 
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-70 md:opacity-90" aria-hidden="true">
@@ -160,9 +158,9 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto w-full flex items-center justify-center min-h-[60vh]">
+      <div className="relative z-10 mx-auto w-full flex items-center justify-center">
         <MotionDiv
-          className="flex flex-col space-y-4 md:space-y-5 w-full max-w-7xl mx-auto"
+          className="flex flex-col space-y-4 md:space-y-5 w-full max-w-7xl mx-auto shadow-none"
           variants={introVariants}
         >
           <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-gold-200/16 to-transparent dark:from-gold-500/6" aria-hidden="true" />
