@@ -10,10 +10,10 @@ function FooterSection({ contact, bride, groom }) {
 
   return (
     <footer className="px-4 pb-16 pt-22">
-      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-gold-200/45 bg-ivory-50/82 p-8 text-center backdrop-blur-sm dark:border-stone-700/60 dark:bg-stone-900/82 md:p-10" variant="fadeIn">
+      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-gold-200/45 bg-ivory-50/82 p-8 text-center backdrop-blur-sm shadow-lg shadow-gold-100/15 dark:border-stone-700/60 dark:bg-stone-900/82 md:p-10" variant="fadeIn">
         <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-          <div className="absolute -left-20 top-0 h-48 w-48 rounded-full bg-gold-100/40 blur-3xl dark:bg-gold-400/10" />
-          <div className="absolute -right-16 bottom-0 h-52 w-52 rounded-full bg-ivory-100/55 blur-3xl dark:bg-gold-300/10" />
+          <div className="absolute -left-20 top-0 h-48 w-48 rounded-full bg-gold-100/20 blur-3xl dark:bg-gold-400/5" />
+          <div className="absolute -right-16 bottom-0 h-52 w-52 rounded-full bg-ivory-100/30 blur-3xl dark:bg-gold-300/5" />
         </div>
 
         <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-gold-700 dark:text-gold-300">

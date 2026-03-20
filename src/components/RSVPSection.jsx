@@ -85,23 +85,27 @@ function RSVPSection() {
     }`
 
   return (
-    <section id="rsvp" className="px-4 py-20">
+    <section id="rsvp" className="relative px-4 py-24">
+      {/* Gold radial background glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(224,201,145,0.13),transparent_80%)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(180,152,93,0.10),transparent_80%)]" aria-hidden="true" />
       <Reveal variant="fadeUp">
         <MotionDiv
-          className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-gold-300/50 bg-white/85 p-8 backdrop-blur dark:border-stone-700 dark:bg-stone-900/80"
+          className="relative mx-auto max-w-2xl overflow-visible rounded-3xl border-2 border-gold-300/60 bg-white/90 p-0 shadow-xl backdrop-blur-lg dark:border-gold-700/40 dark:bg-stone-900/85"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ y: -2 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative">
-            <FloatingHearts />
+          {/* Decorative heart icon */}
+          <div className="flex flex-col items-center pt-8">
+            <span className="text-4xl text-gold-400/80 dark:text-gold-300/70 mb-2">♥</span>
             <SectionTitle
-              eyebrow="RSVP"
-              title="Will You Join Us?"
-              subtitle="Please respond before November 20, 2026."
+              eyebrow={<span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 bg-clip-text text-transparent">RSVP</span>}
+              title={<span className="text-gold-700 dark:text-gold-300">Will You Join Us?</span>}
+              subtitle={<span className="text-stone-500 dark:text-stone-300">Please respond before November 20, 2026.</span>}
             />
+            <div className="my-4 h-px w-24 bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-70" />
           </div>
 
           <AnimatePresence mode="wait">
@@ -120,13 +124,13 @@ function RSVPSection() {
                   transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
                   className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold-300 bg-ivory-50 text-2xl dark:bg-stone-800"
                 >
-                  ♡
+                  ♥
                 </motion.div>
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.25, duration: 0.4 }}
-                  className="font-['Cormorant_Garamond'] text-2xl text-stone-700 dark:text-stone-100"
+                  className="font-['Cormorant_Garamond'] text-2xl text-gold-700 dark:text-gold-300"
                 >
                   Thank you!
                 </motion.p>
@@ -134,7 +138,7 @@ function RSVPSection() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.4 }}
-                  className="text-sm text-stone-400"
+                  className="text-sm text-stone-500 dark:text-gold-200"
                 >
                   Your RSVP has been received. We can't wait to celebrate with you.
                 </motion.p>
@@ -143,18 +147,18 @@ function RSVPSection() {
               <motion.form
                 key="form"
                 onSubmit={onSubmit}
-                className="space-y-4 text-left"
+                className="space-y-6 text-left px-6 pb-10 pt-2"
                 initial="hidden"
                 animate="visible"
               >
-                {[
+                {[ 
                   { label: "Name", name: "name", type: "text", required: true },
                   { label: "Email", name: "email", type: "email", required: true },
                   { label: "Number of Guests", name: "guests", type: "number", required: true, min: "1", max: "8" },
                 ].map((field, i) => (
                   <motion.label
                     key={field.name}
-                    className={`block text-sm transition-colors duration-300 dark:text-stone-200 ${
+                    className={`block text-sm font-medium transition-colors duration-300 dark:text-stone-200 ${
                       focused === field.name ? "text-gold-700" : "text-stone-700"
                     }`}
                     custom={i}
@@ -171,13 +175,17 @@ function RSVPSection() {
                       onChange={onChange}
                       onFocus={() => setFocused(field.name)}
                       onBlur={() => setFocused(null)}
-                      className={inputClass(field.name)}
+                      className={
+                        inputClass(field.name) +
+                        " shadow-sm focus:ring-2 focus:ring-gold-400/60 border-2 border-gold-200 dark:border-gold-700/30 placeholder:text-stone-400 dark:placeholder:text-stone-500"
+                      }
+                      placeholder={field.label}
                     />
                   </motion.label>
                 ))}
 
                 <motion.label
-                  className={`block text-sm transition-colors duration-300 dark:text-stone-200 ${
+                  className={`block text-sm font-medium transition-colors duration-300 dark:text-stone-200 ${
                     focused === "message" ? "text-gold-700" : "text-stone-700"
                   }`}
                   custom={3}
@@ -191,7 +199,10 @@ function RSVPSection() {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     rows={4}
-                    className={inputClass("message")}
+                    className={
+                      inputClass("message") +
+                      " shadow-sm focus:ring-2 focus:ring-gold-400/60 border-2 border-gold-200 dark:border-gold-700/30 placeholder:text-stone-400 dark:placeholder:text-stone-500"
+                    }
                     placeholder="Share your wishes for the couple"
                   />
                 </motion.label>
@@ -199,13 +210,13 @@ function RSVPSection() {
                 <motion.div custom={4} variants={fieldVariants}>
                   <MotionButton
                     type="submit"
-                    className="w-full rounded-full bg-gradient-to-r from-gold-600 to-gold-400 px-6 py-3 text-sm font-semibold tracking-wide text-white transition dark:from-gold-700 dark:to-gold-500"
+                    className="w-full rounded-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 px-8 py-3 text-base font-semibold tracking-wide text-white shadow-lg transition duration-200 hover:from-gold-700 hover:to-gold-400 dark:from-gold-700 dark:to-gold-500"
                     variants={animations.buttonHover}
                     initial="rest"
                     whileHover="hover"
                     whileTap={{ scale: 0.97 }}
                   >
-                    Confirm Attendance
+                    <span className="mr-2 text-lg align-middle">♥</span> Confirm Attendance
                   </MotionButton>
                 </motion.div>
               </motion.form>
