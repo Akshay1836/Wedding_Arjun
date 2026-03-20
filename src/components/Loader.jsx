@@ -1,320 +1,169 @@
-import { motion } from "framer-motion"
-import { useAnimationSystem } from "../animations"
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const MotionDiv = motion.div
-const MotionSpan = motion.span
+// Loader: Cinematic, luxury brand film intro
+function Loader({ bride, groom, isDark, tagline = "A celebration of love", onFinish }) {
+  // Theme colors
+  const bgGradient = isDark
+    ? "bg-[linear-gradient(180deg,rgba(22,19,15,0.98)_0%,rgba(28,24,18,1)_40%,rgba(24,21,16,0.98)_100%)]"
+    : "bg-[linear-gradient(180deg,rgba(249,241,224,0.98)_0%,rgba(255,252,246,1)_38%,rgba(247,235,213,0.96)_100%)]";
+  const vignette = isDark
+    ? "after:content-[''] after:fixed after:inset-0 after:pointer-events-none after:bg-gradient-to-b after:from-black/60 after:to-black/40"
+    : "after:content-[''] after:fixed after:inset-0 after:pointer-events-none after:bg-gradient-to-b after:from-black/10 after:to-black/5";
+  const nameColor = isDark ? "text-gold-200" : "text-gold-700";
+  const shimmerColor = isDark ? "from-gold-400/0 via-gold-200/60 to-gold-400/0" : "from-gold-200/0 via-gold-500/60 to-gold-200/0";
+  const progressColor = isDark ? "bg-gold-700/80" : "bg-gold-400/80";
 
-const PARTICLES = [
-  { left: "10%", top: "20%", size: "1rem", delay: 0 },
-  { left: "22%", top: "72%", size: "0.8rem", delay: 0.6 },
-  { left: "35%", top: "16%", size: "1.1rem", delay: 1.1 },
-  { left: "48%", top: "78%", size: "0.75rem", delay: 0.2 },
-  { left: "62%", top: "22%", size: "0.95rem", delay: 1.4 },
-  { left: "74%", top: "68%", size: "1.1rem", delay: 0.8 },
-  { left: "88%", top: "30%", size: "0.85rem", delay: 1.7 },
-]
+  // Animation durations
+  const DURATION = 3.2;
 
-const SPARKLES = [
-  { x: -26, y: -10, delay: 0.95 },
-  { x: 24, y: -12, delay: 1.05 },
-  { x: -10, y: -30, delay: 1.12 },
-  { x: 12, y: -34, delay: 1.18 },
-]
+  // Letter-by-letter name reveal
+  const renderName = (name, delay = 0) => (
+    <span className="inline-block">
+      {[...name].map((char, i) => (
+        <motion.span
+          key={i}
+          className="inline-block"
+          initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ delay: delay + 1.1 + i * 0.07, duration: 0.44, ease: "easeOut" }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
 
-const LOVE_BURST = [
-  { drift: -42, rise: 82, size: "0.8rem", delay: 0.06, rotate: -16 },
-  { drift: -24, rise: 95, size: "0.95rem", delay: 0.11, rotate: -10 },
-  { drift: 0, rise: 106, size: "1.1rem", delay: 0.08, rotate: 0 },
-  { drift: 24, rise: 94, size: "0.95rem", delay: 0.14, rotate: 10 },
-  { drift: 42, rise: 82, size: "0.8rem", delay: 0.18, rotate: 16 },
-]
+  const [visible, setVisible] = useState(true);
 
-function Loader({ bride, groom, isDark }) {
-  const animations = useAnimationSystem()
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(false);
+      if (onFinish) onFinish();
+    }, 4000); // 4 seconds
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!visible) return null;
 
   return (
-    <MotionDiv
-      className={`fixed inset-0 z-[100] grid place-items-center ${
-        isDark
-          ? "bg-[linear-gradient(180deg,rgba(22,19,15,0.98)_0%,rgba(28,24,18,1)_40%,rgba(24,21,16,0.98)_100%)]"
-          : "bg-[linear-gradient(180deg,rgba(249,241,224,0.98)_0%,rgba(255,252,246,1)_38%,rgba(247,235,213,0.96)_100%)]"
-      }`}
-      variants={animations.modalBackdrop}
-      initial="visible"
-      animate="visible"
-      exit="exit"
+    <motion.div
+      className={`fixed inset-0 z-[100] flex items-center justify-center ${bgGradient} ${vignette} overflow-hidden`}
+      initial={{ opacity: 0, filter: "blur(18px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
+      exit={{ opacity: 0, filter: "blur(8px)" }}
+      transition={{ duration: 0.9, ease: "easeInOut" }}
       aria-label="Loading invitation"
       role="status"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className={`absolute -left-16 top-14 h-64 w-64 rounded-full blur-[95px] ${isDark ? "bg-gold-400/10" : "bg-gold-100/45"}`} />
-        <div className={`absolute -right-12 bottom-10 h-72 w-72 rounded-full blur-[110px] ${isDark ? "bg-blush-300/10" : "bg-ivory-100/65"}`} />
+      {/* Animated background gradient movement */}
+      <motion.div
+        className="absolute inset-0 w-full h-full"
+        initial={{ scale: 1.04, opacity: 0.7 }}
+        animate={{ scale: [1.04, 1, 1.02, 1], opacity: [0.7, 1, 0.95, 1] }}
+        transition={{ duration: DURATION, repeat: Infinity, ease: "easeInOut" }}
+        style={{ zIndex: 1 }}
+      />
 
-        {PARTICLES.map((item, index) => (
-          <MotionDiv
-            key={index}
-            className={`${isDark ? "text-gold-300/40" : "text-gold-500/45"} absolute`}
-            style={{ left: item.left, top: item.top, fontSize: item.size }}
-            animate={
-              animations.reduced
-                ? undefined
-                : {
-                    y: [0, -8, 0],
-                    opacity: [0.35, 0.8, 0.35],
-                  }
-            }
-            transition={
-              animations.reduced
-                ? undefined
-                : {
-                    duration: 3.8,
-                    delay: item.delay,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
-            }
-          >
-            ♥
-          </MotionDiv>
+      {/* Subtle particles/dust */}
+      <div className="pointer-events-none absolute inset-0 z-10">
+        {[...Array(7)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute rounded-full bg-gold-200/20"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${18 + (i % 4) * 16}%`,
+              width: `${0.5 + 0.2 * (i % 3)}rem`,
+              height: `${0.5 + 0.2 * (i % 2)}rem`,
+              filter: "blur(2.5px)",
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: [0, 0.5, 0.2, 0], scale: [0.8, 1.1, 1, 0.8] }}
+            transition={{ duration: 3.8 + i * 0.2, repeat: Infinity, ease: "easeInOut", delay: i * 0.18 }}
+          />
         ))}
       </div>
 
-      <MotionDiv className="relative text-center mt-40 sm:mt-8 md:mt-16 lg:mt-20" variants={animations.modalContent} initial="hidden" animate="visible">
-        <MotionDiv
-          className="relative mx-auto mb-36 sm:mb-10 md:mb-14 lg:mb-16 h-[44vw] min-h-[170px] max-h-[260px] w-11/12 max-w-[340px] sm:h-[210px] sm:w-[320px]"
-          animate={
-            animations.reduced
-              ? undefined
-              : {
-                  y: [0, -3, 0],
-                  duration: 3.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-          }
+      {/* Cinematic center content */}
+      <motion.div
+        className="relative flex flex-col items-center justify-center w-full max-w-xl px-4"
+        initial={{ scale: 1.04, opacity: 0 }}
+        animate={{ scale: [1.04, 1, 1.01, 1], opacity: [0, 1, 1, 1] }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        style={{ zIndex: 20 }}
+      >
+        {/* Elegant animated light trail */}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 top-0 w-64 h-1.5 rounded-full bg-gradient-to-r from-transparent via-gold-300/80 to-transparent shadow-lg"
+          initial={{ opacity: 0, scaleX: 0.2 }}
+          animate={{ opacity: [0, 1, 0.7, 0], scaleX: [0.2, 1, 1, 1.2] }}
+          transition={{ duration: 1.1, delay: 0.7, ease: "easeInOut" }}
+        />
+
+        {/* Names luxury reveal */}
+        <motion.h1
+          className={`relative text-center font-['Great_Vibes'] text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide ${nameColor}`}
+          initial={{ opacity: 0, y: 32, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.9, delay: 1.1, ease: "easeOut" }}
         >
-          <div className="absolute inset-x-0 top-[16%] z-[60] mx-auto w-10/12 max-w-[260px] sm:top-[34px] sm:w-[240px]">
-            <MotionDiv
-                className={`h-[18vw] min-h-[70px] max-h-[110px] rounded-xl border px-2 pt-3 text-center sm:h-[128px] ${
-                isDark
-                  ? "border-gold-500/25 bg-stone-800/95 text-gold-300"
-                  : "border-gold-200/70 bg-white text-gold-700"
-              }`}
-              animate={
-                animations.reduced
-                  ? undefined
-                  : {
-                      y: [30, -132, -112, 62, 12, 34, 30],
-                      rotate: [0, -1.5, -1, 1.6, -0.5, 0.25, 0],
-                    }
-              }
-              transition={
-                animations.reduced
-                  ? undefined
-                  : {
-                      duration: 4.2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      times: [0, 0.2, 0.42, 0.66, 0.8, 0.92, 1],
-                    }
-              }
-            >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em]">Invitation</p>
-              <p className="mt-2 font-['Cormorant_Garamond'] text-[0.65rem] sm:text-[0.85rem] font-medium leading-tight">
-                <span>{groom}</span>
-                <br />
-                <span className="inline-block align-middle font-['Great_Vibes'] text-[0.8em]">&amp;</span>
-                <br />
-                <span>{bride}</span>
-              </p>
-            </MotionDiv>
-
-            {!animations.reduced
-              ? LOVE_BURST.map((heart, index) => (
-                  <MotionDiv
-                    key={`love-burst-${index}`}
-                    className={`pointer-events-none absolute inset-x-0 top-14 mx-auto w-fit ${isDark ? "text-gold-300/85" : "text-gold-500/85"}`}
-                    style={{ fontSize: heart.size }}
-                    animate={{
-                        x: [0, heart.drift * 0.55, heart.drift],
-                      y: [0, 0, -heart.rise * 0.55, -heart.rise, -(heart.rise + 8)],
-                      rotate: [0, heart.rotate * 0.5, heart.rotate],
-                      opacity: [0, 0, 0.96, 0.78, 0],
-                      scale: [0.3, 0.3, 1, 0.92, 0.45],
-                    }}
-                    transition={{
-                      duration: 4.2,
-                      delay: heart.delay,
-                      repeat: Infinity,
-                      ease: "easeOut",
-                      times: [0, 0.2, 0.36, 0.62, 1],
-                    }}
-                    aria-hidden="true"
-                  >
-                    ♥
-                  </MotionDiv>
-                ))
-              : null}
-          </div>
-
-          <MotionDiv
-            className={`absolute inset-x-0 bottom-0 z-20 mx-auto h-[22vw] min-h-[70px] max-h-[120px] w-10/12 max-w-[220px] overflow-hidden rounded-b-[18px] border-x border-b sm:h-[120px] sm:w-[270px] ${
-              isDark
-                ? "border-gold-500/25 bg-gradient-to-b from-stone-800/95 to-stone-900/90"
-                : "border-gold-300/60 bg-gradient-to-b from-white to-ivory-100"
-            }`}
-            animate={
-              animations.reduced
-                ? undefined
-                : {
-                    scaleY: [1, 1, 1, 0.95, 1.02, 0.99, 1],
-                  }
-            }
-            transition={
-              animations.reduced
-                ? undefined
-                : {
-                    duration: 4.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    times: [0, 0.2, 0.42, 0.66, 0.8, 0.92, 1],
-                  }
-            }
-          >
-            <div className={`pointer-events-none absolute inset-x-0 top-0 h-px ${isDark ? "bg-gold-500/25" : "bg-gold-300/55"}`} />
-            <div className={`pointer-events-none absolute inset-x-3 top-2 h-5 rounded-full blur-md ${isDark ? "bg-gold-300/6" : "bg-white/60"}`} />
-          </MotionDiv>
-
-          <MotionDiv
-            className={`absolute inset-x-0 -bottom-3 z-10 mx-auto h-3 w-8/12 max-w-[172px] rounded-full blur-sm ${
-              isDark ? "bg-black/45" : "bg-stone-500/20"
-            }`}
-            animate={
-              animations.reduced
-                ? undefined
-                : {
-                    scaleX: [0.78, 0.52, 0.56, 1.08, 0.9, 1, 0.95],
-                    opacity: [0.35, 0.22, 0.24, 0.5, 0.38, 0.42, 0.36],
-                  }
-            }
-            transition={
-              animations.reduced
-                ? undefined
-                : {
-                    duration: 4.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    times: [0, 0.2, 0.42, 0.66, 0.8, 0.92, 1],
-                  }
-            }
+          {renderName(groom)}
+          <span className="mx-3 font-['Cormorant_Garamond'] text-2xl align-middle">&amp;</span>
+          {renderName(bride, 0.2)}
+          {/* Shimmer sweep */}
+          <motion.span
+            className={`absolute left-0 top-1/2 w-full h-8 -translate-y-1/2 pointer-events-none bg-gradient-to-r ${shimmerColor} blur-[2px]`}
+            initial={{ opacity: 0, x: -80 }}
+            animate={{ opacity: [0, 0.22, 0], x: [0, 40, 80] }}
+            transition={{ duration: 1.3, delay: 1.7, repeat: Infinity, repeatDelay: 2.2 }}
             aria-hidden="true"
           />
+        </motion.h1>
 
-          <div className="absolute inset-x-0 bottom-[27vw] sm:bottom-[72px] z-40 mx-auto w-10/12 max-w-[220px] sm:w-[270px]" style={{ perspective: 900 }}>
-            <MotionDiv
-              className={`h-[9vw] min-h-[48px] max-h-[108px] origin-bottom [clip-path:polygon(0_100%,50%_0,100%_100%)] border sm:h-[108px] ${
-                isDark
-                  ? "border-gold-500/25 bg-gradient-to-b from-stone-800/98 to-stone-900/95"
-                  : "border-gold-300/60 bg-gradient-to-b from-ivory-100 to-gold-50/80"
-              }`}
-              animate={
-                animations.reduced
-                  ? undefined
-                  : {
-                      rotateX: [0, 166, 166, 0],
-                    }
-              }
-              transition={
-                animations.reduced
-                  ? undefined
-                  : {
-                      duration: 4.2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      times: [0, 0.2, 0.76, 1],
-                    }
-              }
-            />
-          </div>
-
-          <div className="absolute inset-x-0 bottom-[54px] z-50 mx-auto w-fit">
-            <MotionDiv
-              className={`grid h-8 w-8 place-items-center rounded-full border-2 text-[0.7rem] shadow-[0_8px_16px_-10px_rgba(0,0,0,0.35)] ${
-                isDark
-                  ? "border-gold-500/50 bg-gradient-to-b from-stone-800 to-stone-900 text-gold-300"
-                  : "border-gold-300/80 bg-gradient-to-b from-white to-ivory-100 text-gold-600"
-              }`}
-              animate={
-                animations.reduced
-                  ? undefined
-                  : {
-                      scale: [1, 1.08, 1],
-                      opacity: [0.9, 1, 0.9],
-                    }
-              }
-              transition={
-                animations.reduced
-                  ? undefined
-                  : {
-                      duration: 2.2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }
-              }
-            >
-              ♥
-            </MotionDiv>
-          </div>
-
-          {!animations.reduced
-            ? SPARKLES.map((sparkle, index) => (
-                <MotionDiv
-                  key={`sparkle-${index}`}
-                  className={`pointer-events-none absolute inset-x-0 bottom-[62px] z-50 mx-auto w-fit ${
-                    isDark ? "text-gold-300/80" : "text-gold-500/80"
-                  }`}
-                  style={{ x: sparkle.x, y: sparkle.y }}
-                  animate={{
-                    opacity: [0, 0, 1, 0.6, 0],
-                    scale: [0.4, 0.4, 1, 0.9, 0.2],
-                  }}
-                  transition={{
-                    duration: 3.6,
-                    delay: sparkle.delay,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                  }}
-                  aria-hidden="true"
-                >
-                  ✦
-                </MotionDiv>
-              ))
-            : null}
-        </MotionDiv>
-        <p
-          className={`font-['Cormorant_Garamond'] text-[clamp(1rem,2.5vw,1.3rem)] font-medium leading-tight ${
-            isDark ? "text-gold-300" : "text-gold-700"
-          } flex items-center justify-center gap-2 mt-2 mb-2`}
+        {/* Tagline luxury fade-in */}
+        <motion.p
+          className="mt-4 text-center font-['Cormorant_Garamond'] text-lg sm:text-xl font-medium text-gold-500 dark:text-gold-200/90 tracking-wide"
+          initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.7, delay: 2.1, ease: "easeOut" }}
         >
-          <span>{groom}</span>
-          <span className="inline-block align-middle font-['Great_Vibes'] text-[0.9em]">&amp;</span>
-          <span>{bride}</span>
-        </p>
+          {tagline}
+        </motion.p>
 
-        {/* Spinning gold heart loader */}
-        <div className="mt-6 flex justify-center">
-          <motion.span
-            className={isDark ? "text-gold-300 text-3xl" : "text-gold-700 text-3xl"}
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-            aria-label="Loading"
-          >
-            ♥
-          </motion.span>
-        </div>
-      </MotionDiv>
-    </MotionDiv>
-  )
+        {/* Minimal loader indicator (progress line) */}
+        <motion.div
+          className={`mt-10 h-0.5 w-32 rounded-full ${progressColor} shadow-inner`}
+          initial={{ scaleX: 0, opacity: 0.7 }}
+          animate={{ scaleX: [0, 1, 1, 0], opacity: [0.7, 1, 1, 0] }}
+          transition={{ duration: DURATION, ease: "easeInOut" }}
+          style={{ transformOrigin: "left" }}
+        />
+
+        {/* Micro breathing animation (scale loop) */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.012, 0.995, 1] }}
+          transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+          style={{ zIndex: -1 }}
+        />
+
+        {/* Optional skip button */}
+        {/* <motion.button
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gold-100/80 text-gold-700 font-semibold text-xs shadow-md hover:bg-gold-200/90 transition-all"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 2.7, ease: "easeOut" }}
+        >
+          Skip
+        </motion.button> */}
+      </motion.div>
+
+      {/* Film grain overlay */}
+      <div className="pointer-events-none fixed inset-0 z-50 mix-blend-soft-light opacity-30" style={{ background: `url('data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grain\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'0.7\' numOctaves=\'2\' stitchTiles=\'stitch\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23grain)\' opacity=\'0.18\'/></svg>')`, backgroundSize: 'cover' }} />
+    </motion.div>
+  );
 }
 
-export default Loader
+export default Loader;

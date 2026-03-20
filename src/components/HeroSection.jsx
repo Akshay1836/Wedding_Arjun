@@ -31,7 +31,7 @@ function RoyalOrnament({ style }) {
   )
 }
 
-export default function HeroSection({ bride, groom, dateLabel, locationLabel }) {
+export default function HeroSection({ bride, groom, dateLabel, locationLabel, heading = "Shubh Vivah Samaroh" }) {
   const reduceMotion = useReducedMotion()
 
   const containerVariants = {
@@ -41,27 +41,53 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel }) 
       transition: {
         duration: reduceMotion ? 0.3 : 0.8,
         when: "beforeChildren",
-        staggerChildren: reduceMotion ? 0 : 0.12,
+        staggerChildren: reduceMotion ? 0 : 0.22, // slower stagger
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: reduceMotion ? 0 : 18 },
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 28, filter: reduceMotion ? undefined : "blur(18px)" },
     visible: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
-        duration: reduceMotion ? 0.25 : 0.65,
+        duration: reduceMotion ? 0.25 : 0.85,
         ease: [0.22, 1, 0.36, 1],
       },
     },
   }
 
+  // Unique animation variants for each element
+  const introVariants = {
+    hidden: { opacity: 0, scale: 0.98, filter: "blur(12px)" },
+    visible: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  };
+  const nameVariants = {
+    hidden: { opacity: 0, x: -32, filter: "blur(18px)" },
+    visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+  };
+  const ampersandVariants = {
+    hidden: { opacity: 0, scale: 0.7, rotate: -30 },
+    visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.7, delay: 0.3, ease: "backOut" } },
+  };
+  const taglineVariants = {
+    hidden: { opacity: 0, y: 32, filter: "blur(10px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  };
+  const ctaVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 18 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, delay: 0.9, type: "spring", stiffness: 120 } },
+  };
+
+  // Shimmer sweep for names
+  const shimmerColor = "from-gold-200/0 via-gold-500/60 to-gold-200/0"
+
   return (
     <MotionSection
       id="home"
-      className="relative isolate flex min-h-screen items-start md:items-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-24 md:min-h-screen md:pb-12 md:pt-12"
+      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-8 md:min-h-screen md:pb-12 md:pt-6"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -134,52 +160,62 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel }) 
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto max-w-3xl">
+      <div className="relative z-10 mx-auto w-full flex items-center justify-center min-h-[60vh]">
         <MotionDiv
-          className="relative overflow-hidden rounded-[1.6rem] bg-white/72 px-4 py-8 backdrop-blur-sm dark:bg-stone-900/42 md:px-7 md:py-10 flex flex-col space-y-4 md:space-y-3"
-          variants={itemVariants}
+          className="flex flex-col space-y-4 md:space-y-5 w-full max-w-7xl mx-auto"
+          variants={introVariants}
         >
           <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-gold-200/16 to-transparent dark:from-gold-500/6" aria-hidden="true" />
 
           <MotionP
             className="relative text-center text-[10px] font-semibold uppercase tracking-[0.42em] text-gold-600 dark:text-gold-300"
-            variants={itemVariants}
+            variants={introVariants}
           >
-            Shubh Vivah Samaroh
+            {heading}
           </MotionP>
 
           <MotionP
             className="relative mt-2 text-center font-['Cormorant_Garamond'] text-base italic text-stone-600 dark:text-stone-200 md:text-[1.15rem]"
-            variants={itemVariants}
+            variants={introVariants}
           >
             With the blessings of elders and loved ones
           </MotionP>
 
           <MotionH1
-            className="relative mt-2 text-center font-['Cormorant_Garamond'] font-semibold leading-[1.02] text-stone-700 dark:text-ivory-100"
-            style={{ fontSize: "clamp(1.85rem, 5.4vw, 3rem)" }}
-            variants={itemVariants}
+            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide break-words whitespace-normal px-2 sm:px-4 md:px-8 lg:whitespace-normal mt-6 mb-0"
+            style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)", letterSpacing: "0.02em", wordSpacing: "0.08em", maxWidth: "900px", width: "100%", margin: "0 auto" }}
+            variants={nameVariants}
           >
-            <span className="inline-block tracking-[0.02em]">{groom}</span>
-            <span className="mx-3 inline-block align-middle font-['Great_Vibes'] text-gold-500 dark:text-gold-400" style={{ fontSize: "0.95em" }}>&amp;</span>
-            <span className="inline-block tracking-[0.02em]">{bride}</span>
+            <motion.span className="inline-block tracking-[0.02em] px-1 sm:px-2 md:px-4 relative align-middle" variants={nameVariants}>
+              {groom}
+            </motion.span>
+            <motion.span
+              className="mx-2 sm:mx-3 md:mx-4 inline-block align-middle font-['Great_Vibes'] text-gold-500 dark:text-gold-400 relative"
+              style={{ fontSize: "1.1em" }}
+              variants={ampersandVariants}
+            >
+              &amp;
+              {/* Shimmer sweep */}
+              <motion.span
+                className={`absolute left-0 top-1/2 w-full h-8 -translate-y-1/2 pointer-events-none bg-gradient-to-r from-gold-200/0 via-gold-500/60 to-gold-200/0 blur-[2px]`}
+                initial={{ opacity: 0, x: -80 }}
+                animate={{ opacity: [0, 0.22, 0], x: [0, 40, 80] }}
+                transition={{ duration: 1.3, delay: 1.1, repeat: Infinity, repeatDelay: 2.2 }}
+                aria-hidden="true"
+              />
+            </motion.span>
+            <motion.span className="inline-block tracking-[0.02em] px-1 sm:px-2 md:px-4 relative align-middle" variants={nameVariants}>
+              {bride}
+            </motion.span>
           </MotionH1>
-
-          <MotionDiv className="mt-2 flex items-center justify-center gap-2" variants={itemVariants}>
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-gold-300 dark:to-gold-500/70" />
-            <span className="text-gold-500 dark:text-gold-400" aria-hidden="true">✦</span>
-            <div className="h-px w-10 bg-gradient-to-l from-transparent to-gold-300 dark:to-gold-500/70" />
-          </MotionDiv>
-
           <MotionP
-            className="relative mx-auto mt-2 max-w-2xl text-center font-['Cormorant_Garamond'] text-[0.95rem] italic leading-relaxed text-stone-600 dark:text-stone-200 md:text-[1rem]"
-            variants={itemVariants}
+            className="relative mx-auto mt-0 max-w-2xl text-center font-['Cormorant_Garamond'] text-[1.05rem] sm:text-[1.25rem] md:text-[1.45rem] italic leading-relaxed text-stone-600 dark:text-stone-200"
+            variants={taglineVariants}
           >
             We request the honor of your gracious presence to celebrate their sacred union,
             followed by an evening of joy, music, and blessings.
           </MotionP>
-
-          <MotionDiv className="relative mx-auto mt-4 grid max-w-3xl gap-3 sm:grid-cols-2" variants={itemVariants}>
+          <MotionDiv className="relative mx-auto mt-4 grid max-w-3xl gap-3 sm:grid-cols-2" variants={ctaVariants}>
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-ivory-100/88 to-ivory-50/80 px-4 py-3.5 text-center transition-all duration-300 hover:from-ivory-100 hover:to-gold-50/70 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
               <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Auspicious Date</p>
@@ -191,8 +227,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel }) 
               <p className="mt-1.5 font-['Cormorant_Garamond'] text-lg font-semibold leading-none text-stone-700 dark:text-stone-100">{locationLabel}</p>
             </div>
           </MotionDiv>
-
-          <MotionDiv className="relative mt-4 flex flex-wrap items-center justify-center gap-2.5" variants={itemVariants}>
+          <MotionDiv className="relative mt-4 flex flex-wrap items-center justify-center gap-2.5" variants={ctaVariants}>
             <a
               href="#events"
               className="inline-flex min-w-[152px] items-center justify-center rounded-full border border-gold-200/70 bg-gradient-to-r from-gold-300 via-gold-200 to-ivory-100 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-700 transition-all duration-300 hover:border-gold-300/80 hover:from-gold-400 hover:via-gold-300 hover:to-ivory-100 hover:text-stone-800 dark:border-gold-500/35 dark:bg-gradient-to-r dark:from-gold-500 dark:via-gold-400 dark:to-gold-300 dark:text-stone-900"

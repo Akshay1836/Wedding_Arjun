@@ -50,8 +50,7 @@ function App() {
   }
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsLoading(false), 1700)
-    return () => window.clearTimeout(timer)
+    // Remove old timer logic; handled by Loader's onFinish
   }, [])
 
   useEffect(() => {
@@ -103,48 +102,55 @@ function App() {
   const groom = useMemo(() => weddingInfo.couple.groom, [])
 
   return (
-    <div className="relative isolate overflow-x-hidden bg-[linear-gradient(180deg,rgba(249,241,224,0.98)_0%,rgba(255,252,246,1)_38%,rgba(247,235,213,0.96)_100%)] dark:bg-[linear-gradient(180deg,rgba(22,19,15,0.98)_0%,rgba(28,24,18,1)_40%,rgba(24,21,16,0.98)_100%)]">
-      <BackgroundHearts />
-      <span className="ornament left-[-5rem] top-[8rem] h-60 w-60 bg-blush-300" aria-hidden="true" />
-      <span className="ornament bottom-[15rem] right-[-6rem] h-72 w-72 bg-gold-200" aria-hidden="true" />
+    <>
+      <AnimatePresence>
+        {isLoading ? (
+          <Loader bride={bride} groom={groom} isDark={isDark} onFinish={() => setIsLoading(false)} />
+        ) : (
+          <div className="relative isolate overflow-x-hidden bg-[linear-gradient(180deg,rgba(249,241,224,0.98)_0%,rgba(255,252,246,1)_38%,rgba(247,235,213,0.96)_100%)] dark:bg-[linear-gradient(180deg,rgba(22,19,15,0.98)_0%,rgba(28,24,18,1)_40%,rgba(24,21,16,0.98)_100%)]">
+            <BackgroundHearts />
+            <span className="ornament left-[-5rem] top-[8rem] h-60 w-60 bg-blush-300" aria-hidden="true" />
+            <span className="ornament bottom-[15rem] right-[-6rem] h-72 w-72 bg-gold-200" aria-hidden="true" />
 
-      <FloatingNav
-        isDark={isDark}
-        onThemeToggle={onThemeToggle}
-        isPlaying={isPlaying}
-        onMusicToggle={onMusicToggle}
-      />
+            <FloatingNav
+              isDark={isDark}
+              onThemeToggle={onThemeToggle}
+              isPlaying={isPlaying}
+              onMusicToggle={onMusicToggle}
+            />
 
-      <MotionMain className="relative z-10 pt-12 md:pt-12" variants={animations.pageTransition} initial="hidden" animate="visible" exit="exit">
-        <HeroSection
-          bride={bride}
-          groom={groom}
-          dateLabel={weddingInfo.dateLabel}
-          locationLabel={weddingInfo.locationLabel}
-        />
-        <WelcomeSection
-          bride={bride}
-          groom={groom}
-          locationLabel={weddingInfo.locationLabel}
-        />
-        <CountdownSection targetDate={weddingInfo.targetDate} />
-        <StorySection moments={storyMoments} />
-        <EventsSection events={events} />
-        <GallerySection images={galleryImages} bride={bride} groom={groom} />
-        <CelebrationsVibeSection images={galleryImages} bride={bride} groom={groom} />
-        <RSVPSection />
-        <VenueSection
-          address={weddingInfo.address}
-          mapEmbed={weddingInfo.mapEmbed}
-          directionsUrl={weddingInfo.directionsUrl}
-        />
-        <DressCodeSection details={dressDetails} />
-      </MotionMain>
+            <MotionMain className="relative z-10 pt-12 md:pt-12" variants={animations.pageTransition} initial="hidden" animate="visible" exit="exit">
+              <HeroSection
+                bride={bride}
+                groom={groom}
+                dateLabel={weddingInfo.dateLabel}
+                locationLabel={weddingInfo.locationLabel}
+                heading="Where Love Becomes Forever"
+              />
+              <WelcomeSection
+                bride={bride}
+                groom={groom}
+                locationLabel={weddingInfo.locationLabel}
+              />
+              <CountdownSection targetDate={weddingInfo.targetDate} />
+              <StorySection moments={storyMoments} />
+              <EventsSection events={events} />
+              <GallerySection images={galleryImages} bride={bride} groom={groom} />
+              <CelebrationsVibeSection images={galleryImages} bride={bride} groom={groom} />
+              <RSVPSection />
+              <VenueSection
+                address={weddingInfo.address}
+                mapEmbed={weddingInfo.mapEmbed}
+                directionsUrl={weddingInfo.directionsUrl}
+              />
+              <DressCodeSection details={dressDetails} />
+            </MotionMain>
 
-      <FooterSection contact={weddingInfo.contact} bride={bride} groom={groom} />
-
-      <AnimatePresence>{isLoading ? <Loader bride={bride} groom={groom} isDark={isDark} /> : null}</AnimatePresence>
-    </div>
+            <FooterSection contact={weddingInfo.contact} bride={bride} groom={groom} />
+          </div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
