@@ -87,7 +87,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
   return (
     <MotionSection
       id="home"
-      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden scroll-mt-28 px-4 pb-10 pt-1 sm:pt-8 md:min-h-screen md:pb-12 md:pt-6"
+      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden scroll-mt-28 px-2 pb-4 pt-2 sm:px-4 sm:pb-8 sm:pt-6 md:min-h-screen md:pb-12 md:pt-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -166,22 +166,22 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
           <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-gold-200/16 to-transparent dark:from-gold-500/6" aria-hidden="true" />
 
           <MotionP
-            className="relative text-center text-[10px] font-semibold uppercase tracking-[0.42em] text-gold-600 dark:text-gold-300"
+            className="relative text-center text-[11px] sm:text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.42em] text-gold-600 dark:text-gold-300"
             variants={introVariants}
           >
             {heading}
           </MotionP>
 
           <MotionP
-            className="relative mt-2 text-center font-['Cormorant_Garamond'] text-base italic text-stone-600 dark:text-stone-200 md:text-[1.15rem]"
+            className="relative mt-1 text-center font-['Cormorant_Garamond'] text-base sm:text-lg md:text-xl lg:text-2xl italic text-stone-600 dark:text-stone-200"
             variants={introVariants}
           >
             With the blessings of elders and loved ones
           </MotionP>
 
           <MotionH1
-            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide break-words whitespace-normal px-2 sm:px-4 md:px-8 lg:whitespace-normal mt-6 mb-0"
-            style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)", letterSpacing: "0.02em", wordSpacing: "0.08em", maxWidth: "900px", width: "100%", margin: "0 auto" }}
+            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide whitespace-nowrap px-2 sm:px-4 md:px-8 mt-2 mb-1 text-[1.5rem] sm:text-[2.2rem] md:text-[2.8rem] lg:text-[3.4rem] xl:text-[4rem]"
+            style={{ fontSize: "clamp(1.1rem, 6vw, 3.5rem)", letterSpacing: "0.02em", wordSpacing: "0.08em", maxWidth: "900px", width: "100%", margin: "0 auto" }}
             variants={nameVariants}
           >
             <motion.span className="inline-block tracking-[0.02em] px-1 sm:px-2 md:px-4 relative align-middle" variants={nameVariants}>
@@ -207,7 +207,7 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
             </motion.span>
           </MotionH1>
           <MotionP
-            className="relative mx-auto mt-0 max-w-2xl text-center font-['Cormorant_Garamond'] text-[1.05rem] sm:text-[1.25rem] md:text-[1.45rem] italic leading-relaxed text-stone-600 dark:text-stone-200"
+            className="relative mx-auto mt-0 max-w-2xl text-center font-['Cormorant_Garamond'] text-sm sm:text-base md:text-lg lg:text-xl italic leading-relaxed text-stone-600 dark:text-stone-200"
             variants={taglineVariants}
           >
             We request the honor of your gracious presence to celebrate their sacred union,
@@ -216,13 +216,13 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
           <MotionDiv className="relative mx-auto mt-4 grid max-w-3xl gap-3 sm:grid-cols-2" variants={ctaVariants}>
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-ivory-100/88 to-ivory-50/80 px-4 py-3.5 text-center transition-all duration-300 hover:from-ivory-100 hover:to-gold-50/70 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
-              <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Auspicious Date</p>
-              <p className="mt-1.5 font-['Cormorant_Garamond'] text-lg font-semibold leading-none text-gold-600 dark:text-gold-300">{dateLabel}</p>
+              <p className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Auspicious Date</p>
+              <p className="mt-1.5 font-['Cormorant_Garamond'] text-base sm:text-lg md:text-xl font-semibold leading-none text-gold-600 dark:text-gold-300">{dateLabel}</p>
             </div>
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white/88 to-ivory-50/85 px-4 py-3.5 text-center transition-all duration-300 hover:from-white/92 hover:to-ivory-50 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
-              <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Celebration Venue</p>
-              <p className="mt-1.5 font-['Cormorant_Garamond'] text-lg font-semibold leading-none text-stone-700 dark:text-stone-100">{locationLabel}</p>
+              <p className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Celebration Venue</p>
+              <p className="mt-1.5 font-['Cormorant_Garamond'] text-base sm:text-lg md:text-xl font-semibold leading-none text-stone-700 dark:text-stone-100">{locationLabel}</p>
             </div>
           </MotionDiv>
           <MotionDiv className="relative mt-4 flex flex-wrap items-center justify-center gap-2.5" variants={ctaVariants}>

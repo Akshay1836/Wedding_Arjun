@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { useAnimationSystem } from "../animations"
 import Reveal from "./Reveal"
 import SectionTitle from "./SectionTitle"
+import { useEffect, useState } from "react"
 
 const MotionLi = motion.li
 
@@ -48,13 +49,7 @@ function DressCodeSection({ details }) {
   return (
     <section
       id="details"
-      className="relative px-4 py-20"
-      style={{
-        background:
-          typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'radial-gradient(ellipse at 50% 0%, #18120a 0%, #22190c 60%, #18120a 100%)'
-            : 'radial-gradient(ellipse at 50% 0%, #f6e7c1 0%, #f7ecd7 40%, #fffbe9 80%, #fff 100%)',
-      }}
+      className="relative px-4 py-20 bg-gradient-radial from-[#f8f5ee] via-[#e9e3d0] to-[#e2dac2] dark:from-[#18120a] dark:via-[#1a140b] dark:to-[#18120a]"
     >
       <div className="mx-auto max-w-4xl rounded-3xl border border-gold-500 bg-gradient-to-br from-gold-50 via-ivory-100 to-gold-100 shadow-xl shadow-gold-200/30 p-8
         dark:border-gold-500 dark:bg-gradient-to-br dark:from-[#18120a] dark:via-[#22190c] dark:to-[#18120a] dark:shadow-[0_0_32px_0_rgba(212,180,102,0.15)]">

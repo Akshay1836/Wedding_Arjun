@@ -142,24 +142,24 @@ function CelebrationsVibeSection({ images, bride, groom }) {
               </div>
 
               <svg
-                viewBox="0 0 160 160"
+                viewBox="0 0 90 64"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="mx-auto mt-5 h-20 w-20 text-gold-700/75 dark:text-gold-300/60"
+                className="mx-auto mt-5 h-20 w-20"
                 aria-hidden="true"
               >
-                <circle cx="58" cy="92" r="25" stroke="currentColor" strokeWidth="3" />
-                <circle cx="102" cy="92" r="25" stroke="currentColor" strokeWidth="3" />
-                <path d="M 52 92 H 108" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" opacity="0.45" />
-                <path
-                  d="M 80 36 C 73 28 61 30 57 39 C 54 47 59 56 69 64 C 75 68 80 72 80 72 C 80 72 85 68 91 64 C 101 56 106 47 103 39 C 99 30 87 28 80 36 Z"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  fill="rgba(139,105,20,0.07)"
-                />
-                <path d="M 26 126 Q 80 116 134 126" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-                <path d="M 30 40 Q 42 30 52 40" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-                <path d="M 108 40 Q 118 30 130 40" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+                {/* Heart */}
+                <path d="M45 52C43 50 20 36 20 24C20 16 27 10 34 10C38 10 40 14 45 18C50 14 52 10 56 10C63 10 70 16 70 24C70 36 47 50 45 52Z" fill="#e6c77c" stroke="#bfa14a" stroke-width="2"/>
+                {/* Laurel left */}
+                <path d="M18 38 Q10 48 22 56" stroke="#bfa14a" stroke-width="1.5" fill="none"/>
+                <path d="M20 44 Q14 52 26 60" stroke="#bfa14a" stroke-width="1.1" fill="none"/>
+                {/* Laurel right */}
+                <path d="M72 38 Q80 48 68 56" stroke="#bfa14a" stroke-width="1.5" fill="none"/>
+                <path d="M70 44 Q76 52 64 60" stroke="#bfa14a" stroke-width="1.1" fill="none"/>
+                {/* Sparkle accent */}
+                <g opacity="0.7">
+                  <polygon points="45,4 46,7 49,7.3 47,9 47.7,12 45,10.5 42.3,12 43,9 41,7.3 44,7" fill="#e6c77c"/>
+                </g>
               </svg>
 
               <p className="mt-5 text-center font-['Great_Vibes'] leading-relaxed text-gold-700 dark:text-gold-300" style={{ fontSize: "clamp(1.55rem, 3.5vw, 2.25rem)" }}>

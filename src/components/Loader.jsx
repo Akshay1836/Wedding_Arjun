@@ -40,7 +40,7 @@ function Loader({ bride, groom, isDark, tagline = "A celebration of love", onFin
     const timer = setTimeout(() => {
       setVisible(false);
       if (onFinish) onFinish();
-    }, 4000); // 4 seconds
+    }, 3000); // 4 seconds
     return () => clearTimeout(timer);
   }, []);
 
