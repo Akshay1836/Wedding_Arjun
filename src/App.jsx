@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion"
+import sitaKalyanam from "./assets/Sita Kalyanam-128kbps.mp3"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useAnimationSystem } from "./animations"
 import BackgroundHearts from "./components/BackgroundHearts"
@@ -24,8 +25,7 @@ import {
 } from "./data/weddingContent"
 
 const trackUrls = [
-  "https://cdn.pixabay.com/download/audio/2022/03/15/audio_b78f8de196.mp3?filename=romantic-piano-11384.mp3",
-  "https://cdn.pixabay.com/download/audio/2021/08/04/audio_12b0c7443f.mp3?filename=romantic-10295.mp3",
+  sitaKalyanam,
 ]
 const MotionMain = motion.main
 
@@ -46,6 +46,7 @@ function App() {
     audio.loop = true
     audio.preload = "auto"
     audio.volume = 0.35
+    audio.currentTime = 45
     return audio
   }
 
