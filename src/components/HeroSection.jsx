@@ -123,39 +123,40 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
           </MotionDiv>
         ))}
 
-        {FLOATING_ICONS.map((item, index) => (
-          <MotionDiv
-            key={`${item.icon}-${index}`}
-            className="absolute text-gold-500/45 dark:text-gold-300/38"
-            style={{
-              top: item.top,
-              left: item.left,
-              right: item.right,
-              fontSize: item.size,
-            }}
-            animate={
-              reduceMotion
-                ? undefined
-                : {
-                    y: [0, index % 2 === 0 ? -8 : 8, 0],
-                    x: [0, index % 2 === 0 ? 4 : -4, 0],
-                    opacity: [0.45, 0.8, 0.45],
-                  }
-            }
-            transition={
-              reduceMotion
-                ? undefined
-                : {
-                    duration: 4.8 + index * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
-            }
-            aria-hidden="true"
-          >
-            {item.icon}
-          </MotionDiv>
-        ))}
+          {FLOATING_ICONS.map((item, index) => (
+            <MotionDiv
+              key={`${item.icon}-${index}`}
+              className="absolute text-gold-500/45 dark:text-gold-300/38"
+              style={{
+                top: item.top,
+                left: item.left,
+                right: item.right,
+                fontSize: item.size,
+              }}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                      y: [0, index % 2 === 0 ? -8 : 8, 0],
+                      x: [0, index % 2 === 0 ? 4 : -4, 0],
+                      opacity: [0.45, 0.8, 0.45],
+                    }
+              }
+              transition={
+                reduceMotion
+                  ? undefined
+                  : {
+                      duration: 4.8 + index * 0.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }
+              }
+              aria-hidden="true"
+            >
+              {item.icon}
+            </MotionDiv>
+          ))}
+
       </div>
 
       <div className="relative z-10 mx-auto w-full flex items-center justify-center">
@@ -166,24 +167,24 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
           <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-gold-200/16 to-transparent dark:from-gold-500/6" aria-hidden="true" />
 
           <MotionP
-            className="relative text-center text-[11px] sm:text-[13px] md:text-[15px] font-semibold uppercase tracking-[0.42em] text-gold-600 dark:text-gold-300"
+            className="relative text-center text-[13px] sm:text-[14px] md:text-[15px] font-semibold uppercase tracking-[0.44em] text-gold-600 dark:text-gold-300"
             variants={introVariants}
           >
             {heading}
           </MotionP>
 
           <MotionP
-            className="relative mt-1 text-center font-['Cormorant_Garamond'] text-base sm:text-lg md:text-xl lg:text-2xl italic text-stone-600 dark:text-stone-200"
+            className="relative mt-2 text-center font-['Cormorant_Garamond'] text-lg sm:text-lg md:text-xl lg:text-2xl italic text-stone-600 dark:text-stone-200"
             variants={introVariants}
-          >
+            >
             With the blessings of elders and loved ones
           </MotionP>
 
           <MotionH1
-            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide whitespace-nowrap px-2 sm:px-4 md:px-8 mt-2 mb-1 text-[1.5rem] sm:text-[2.2rem] md:text-[2.8rem] lg:text-[3.4rem] xl:text-[4rem]"
-            style={{ fontSize: "clamp(1.1rem, 6vw, 3.5rem)", letterSpacing: "0.02em", wordSpacing: "0.08em", maxWidth: "900px", width: "100%", margin: "0 auto" }}
+            className="relative text-center font-['Cormorant_Garamond'] font-bold leading-[1.02] text-stone-700 dark:text-ivory-100 tracking-wide px-2 sm:px-4 md:px-8 mt-3 mb-2 text-[2.1rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[2.7rem] xl:text-[3rem] sm:whitespace-nowrap"
+            style={{ fontSize: "clamp(1.6rem, 6vw, 3rem)", letterSpacing: "0.02em", wordSpacing: "0.08em", maxWidth: "900px", width: "100%", margin: "0 auto" }}
             variants={nameVariants}
-          >
+            >
             <motion.span className="inline-block tracking-[0.02em] px-1 sm:px-2 md:px-4 relative align-middle" variants={nameVariants}>
               {groom}
             </motion.span>
@@ -207,34 +208,34 @@ export default function HeroSection({ bride, groom, dateLabel, locationLabel, he
             </motion.span>
           </MotionH1>
           <MotionP
-            className="relative mx-auto mt-0 max-w-2xl text-center font-['Cormorant_Garamond'] text-sm sm:text-base md:text-lg lg:text-xl italic leading-relaxed text-stone-600 dark:text-stone-200"
+            className="relative mx-auto mt-1 max-w-2xl text-center font-['Cormorant_Garamond'] text-base sm:text-base md:text-lg lg:text-xl italic leading-relaxed text-stone-600 dark:text-stone-200"
             variants={taglineVariants}
-          >
+            >
             We request the honor of your gracious presence to celebrate their sacred union,
             followed by an evening of joy, music, and blessings.
           </MotionP>
-          <MotionDiv className="relative mx-auto mt-4 grid max-w-3xl gap-3 sm:grid-cols-2" variants={ctaVariants}>
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-ivory-100/88 to-ivory-50/80 px-4 py-3.5 text-center transition-all duration-300 hover:from-ivory-100 hover:to-gold-50/70 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
+          <MotionDiv className="relative mx-auto mt-6 grid max-w-3xl gap-4 sm:grid-cols-2" variants={ctaVariants}>
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-ivory-100/88 to-ivory-50/80 px-5 py-4 text-center transition-all duration-300 hover:from-ivory-100 hover:to-gold-50/70 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
-              <p className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Auspicious Date</p>
-              <p className="mt-1.5 font-['Cormorant_Garamond'] text-base sm:text-lg md:text-xl font-semibold leading-none text-gold-600 dark:text-gold-300">{dateLabel}</p>
+              <p className="text-[10px] sm:text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.34em] text-stone-500 dark:text-stone-400">Auspicious Date</p>
+              <p className="mt-2 font-['Cormorant_Garamond'] text-lg sm:text-xl md:text-2xl font-semibold leading-none text-gold-600 dark:text-gold-300">{dateLabel}</p>
             </div>
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white/88 to-ivory-50/85 px-4 py-3.5 text-center transition-all duration-300 hover:from-white/92 hover:to-ivory-50 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white/88 to-ivory-50/85 px-5 py-4 text-center transition-all duration-300 hover:from-white/92 hover:to-ivory-50 dark:from-stone-800/68 dark:to-stone-900/58 dark:hover:from-stone-800/75 dark:hover:to-stone-800/65">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200/40 to-transparent dark:via-gold-500/20" aria-hidden="true" />
-              <p className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.32em] text-stone-500 dark:text-stone-400">Celebration Venue</p>
-              <p className="mt-1.5 font-['Cormorant_Garamond'] text-base sm:text-lg md:text-xl font-semibold leading-none text-stone-700 dark:text-stone-100">{locationLabel}</p>
+              <p className="text-[10px] sm:text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.34em] text-stone-500 dark:text-stone-400">Celebration Venue</p>
+              <p className="mt-2 font-['Cormorant_Garamond'] text-lg sm:text-xl md:text-2xl font-semibold leading-none text-stone-700 dark:text-stone-100">{locationLabel}</p>
             </div>
           </MotionDiv>
-          <MotionDiv className="relative mt-4 flex flex-wrap items-center justify-center gap-2.5" variants={ctaVariants}>
+          <MotionDiv className="relative mt-6 flex flex-wrap items-center justify-center gap-3.5" variants={ctaVariants}>
             <a
               href="#events"
-              className="inline-flex min-w-[152px] items-center justify-center rounded-full border border-gold-200/70 bg-gradient-to-r from-gold-300 via-gold-200 to-ivory-100 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-700 transition-all duration-300 hover:border-gold-300/80 hover:from-gold-400 hover:via-gold-300 hover:to-ivory-100 hover:text-stone-800 dark:border-gold-500/35 dark:bg-gradient-to-r dark:from-gold-500 dark:via-gold-400 dark:to-gold-300 dark:text-stone-900"
+              className="inline-flex min-w-[164px] items-center justify-center rounded-full border border-gold-200/70 bg-gradient-to-r from-gold-300 via-gold-200 to-ivory-100 px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-stone-700 transition-all duration-300 hover:border-gold-300/80 hover:from-gold-400 hover:via-gold-300 hover:to-ivory-100 hover:text-stone-800 dark:border-gold-500/35 dark:bg-gradient-to-r dark:from-gold-500 dark:via-gold-400 dark:to-gold-300 dark:text-stone-900"
             >
               View Ceremonies
             </a>
             <a
               href="#rsvp"
-              className="inline-flex min-w-[152px] items-center justify-center rounded-full border border-gold-200/60 bg-white/92 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-700 transition-all duration-300 hover:border-gold-300/75 hover:bg-ivory-50 dark:border-stone-700/55 dark:bg-stone-800/76 dark:text-gold-300 dark:hover:border-gold-500/45 dark:hover:bg-stone-700"
+              className="inline-flex min-w-[164px] items-center justify-center rounded-full border border-gold-200/60 bg-white/92 px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-gold-700 transition-all duration-300 hover:border-gold-300/75 hover:bg-ivory-50 dark:border-stone-700/55 dark:bg-stone-800/76 dark:text-gold-300 dark:hover:border-gold-500/45 dark:hover:bg-stone-700"
             >
               Send Blessings
             </a>
