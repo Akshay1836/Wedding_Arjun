@@ -38,7 +38,7 @@ function App() {
     if (savedTheme) return savedTheme === "dark"
     return window.matchMedia("(prefers-color-scheme: dark)").matches
   })
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const audioRef = useRef(null)
 
   const createAudio = (url) => {
@@ -58,6 +58,15 @@ function App() {
     document.documentElement.classList.toggle("dark", isDark)
     window.localStorage.setItem("theme", isDark ? "dark" : "light")
   }, [isDark])
+
+
+  // Play music by default on mount
+  useEffect(() => {
+    if (isPlaying && !audioRef.current) {
+      onMusicToggle()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(
     () => () => {
@@ -139,11 +148,7 @@ function App() {
               <GallerySection images={galleryImages} bride={bride} groom={groom} />
               <CelebrationsVibeSection images={galleryImages} bride={bride} groom={groom} />
               <RSVPSection />
-              <VenueSection
-                address={weddingInfo.address}
-                mapEmbed={weddingInfo.mapEmbed}
-                directionsUrl={weddingInfo.directionsUrl}
-              />
+              <VenueSection venues={weddingInfo.venues} />
               <DressCodeSection details={dressDetails} />
             </MotionMain>
 

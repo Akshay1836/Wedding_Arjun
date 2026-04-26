@@ -1,31 +1,10 @@
 import { motion, useReducedMotion } from "framer-motion"
 import Reveal from "./Reveal"
+import { galleryImages } from "../data/weddingContent"
 
 const MotionDiv = motion.div
 
-const marqueePhotos = [
-  {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-    alt: "Couple holding hands at golden hour",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80",
-    alt: "Romantic evening lights at the venue",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80",
-    alt: "Couple at the wedding",
-  },
-
-  {
-    src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=800&q=80",
-    alt: "Celebration and smiles",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80",
-    alt: "Wedding flowers and rings",
-  },
-]
+const marqueePhotos = galleryImages.slice(0, 5)
 
 function CupidDecor({ className = "" }) {
   return (

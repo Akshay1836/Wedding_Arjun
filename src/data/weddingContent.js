@@ -1,15 +1,44 @@
+import IMG1 from "../assets/Images/IMG1.JPG.jpeg"
+import IMG2 from "../assets/Images/IMG2.JPG.jpeg"
+import IMG3 from "../assets/Images/IMG3.JPG.jpeg"
+import IMG4 from "../assets/Images/IMG4.JPG.jpeg"
+import IMG5 from "../assets/Images/IMG5.JPG.jpeg"
+import IMG6 from "../assets/Images/IMG6.JPG.jpeg"
+import IMG7 from "../assets/Images/IMG7.JPG.jpeg"
+import IMG8 from "../assets/Images/IMG8.JPG.jpeg"
+import IMG9 from "../assets/Images/IMG9.JPG.jpeg"
+
 export const weddingInfo = {
   couple: {
     bride: "Aiswarya Rengan",
     groom: "Arjun AR",
   },
   dateLabel: "May 17, 2026",
-  locationLabel: "North Paravur, Ernakulam",
+  locationLabel: "Central Auditorium, N.Paravur",
   targetDate: "2026-05-17T18:30:00+05:30",
-  address: "North Paravur, Ernakulam, Kerala",
+  address: "Central Auditorium, N.Paravur, Ernakulam, Kerala",
   mapEmbed:
-    "https://www.google.com/maps?q=North+Paravur+Ernakulam&output=embed",
-  directionsUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam+Kerala",
+    "https://www.google.com/maps?q=Central+Auditorium+N.Paravur+Ernakulam&output=embed",
+  directionsUrl: "https://maps.google.com/?q=Central+Auditorium+N.Paravur+Ernakulam+Kerala",
+  venues: [
+    {
+      label: "Marriage",
+      title: "Wedding Ceremony",
+      address: "Central Auditorium, N.Paravur, Ernakulam, Kerala",
+      mapEmbed:
+        "https://www.google.com/maps?q=Central+Auditorium+N.Paravur+Ernakulam&output=embed",
+      directionsUrl:
+        "https://maps.google.com/?q=Central+Auditorium+N.Paravur+Ernakulam+Kerala",
+    },
+    {
+      label: "Reception",
+      title: "Reception Venue",
+      address: "Treesa Garden Auditorium, Perumbadanna, N.Paravur",
+      mapEmbed:
+        "https://www.google.com/maps?q=Treesa+Garden+Auditorium+Perumbadanna+N.Paravur&output=embed",
+      directionsUrl: "https://maps.google.com/?q=Treesa+Garden+Auditorium+Perumbadanna+N.Paravur",
+    },
+  ],
   contact: {
     phone: "+91 9446722008",
     email: "arjunravi1213@gmail.com",
@@ -18,10 +47,16 @@ export const weddingInfo = {
 
 export const storyMoments = [
   {
-    year: "2018",
+    year: "2008",
     title: "A Quiet First Meeting",
     description:
       "We met at a bookstore cafe on a rainy evening and talked until closing time.",
+  },
+   {
+    year: "2013",
+    title: "The Proposal",
+    description:
+      "At sunrise by the lake, one question turned every day after into a celebration.",
   },
   {
     year: "2021",
@@ -29,12 +64,7 @@ export const storyMoments = [
     description:
       "Distance taught us patience, laughter, and how to build a life across time zones.",
   },
-  {
-    year: "2024",
-    title: "The Proposal",
-    description:
-      "At sunrise by the lake, one question turned every day after into a celebration.",
-  },
+ 
 ]
 
 export const events = [
@@ -55,14 +85,14 @@ export const events = [
   {
     name: "Wedding Ceremony",
     date: "May 17, 2026",
-    time: "6:30 PM",
+    time: "9:45 AM - 10.45 AM",
     venue: "North Paravur, Ernakulam",
     mapUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam",
   },
   {
     name: "Reception",
-    date: "May 18, 2026",
-    time: "8:00 PM",
+    date: "May 17, 2026",
+    time: "5:00 PM - 8:00 PM",
     venue: "North Paravur, Ernakulam",
     mapUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam",
   },
@@ -70,25 +100,40 @@ export const events = [
 
 export const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
-    alt: "Couple holding hands during golden hour",
+    src: IMG8,
+    alt: "Wedding moment 1",
   },
   {
-    src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80",
-    alt: "Wedding rings and flowers",
+    src: IMG2,
+    alt: "Wedding moment 2",
   },
   {
-    src: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=80",
-    alt: "Decorated wedding table setting",
-  },
-
-  {
-    src: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=1200&q=80",
-    alt: "Romantic evening lights at wedding venue",
+    src: IMG3,
+    alt: "Wedding moment 3",
   },
   {
-    src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1200&q=80",
-    alt: "Celebration with petals and smiles",
+    src: IMG4,
+    alt: "Wedding moment 4",
+  },
+  {
+    src: IMG5,
+    alt: "Wedding moment 5",
+  },
+  {
+    src: IMG6,
+    alt: "Wedding moment 6",
+  },
+  {
+    src: IMG7,
+    alt: "Wedding moment 7",
+  },
+  {
+    src: IMG1,
+    alt: "Wedding moment 8",
+  },
+  {
+    src: IMG9,
+    alt: "Wedding moment 9",
   },
 ]
 

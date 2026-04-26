@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { useAnimationSystem } from "../animations"
 import Reveal from "./Reveal"
 import SectionTitle from "./SectionTitle"
@@ -43,7 +44,9 @@ const FloatingHearts = () => {
   )
 }
 
-function VenueSection({ address, mapEmbed, directionsUrl }) {
+function VenueSection({ venues }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const activeVenue = venues[activeIndex]
   const animations = useAnimationSystem()
 
   return (
@@ -59,13 +62,33 @@ function VenueSection({ address, mapEmbed, directionsUrl }) {
         </div>
 
         <Reveal className="grid gap-6 lg:grid-cols-[1.2fr,0.8fr]">
-          <iframe
-            title="Wedding venue map"
-            src={mapEmbed}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="h-[22rem] w-full rounded-3xl border border-gold-200 dark:border-stone-700"
-          />
+          <div>
+            <div className="mb-6 flex flex-wrap gap-3 rounded-3xl bg-ivory-50/90 p-2 dark:bg-stone-900/80">
+              {venues.map((venue, index) => (
+                <button
+                  key={venue.label}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className={`rounded-2xl px-4 py-2 text-sm font-semibold transition ${
+                    index === activeIndex
+                      ? "bg-gold-200 text-stone-900 shadow-lg shadow-gold-200/30 dark:bg-gold-300/20 dark:text-ivory-100"
+                      : "bg-white/80 text-stone-700 hover:bg-gold-100/80 dark:bg-stone-800/85 dark:text-stone-300 dark:hover:bg-stone-700/80"
+                  }`}
+                  aria-pressed={index === activeIndex}
+                >
+                  {venue.label}
+                </button>
+              ))}
+            </div>
+
+            <iframe
+              title={`${activeVenue.label} map`}
+              src={activeVenue.mapEmbed}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-[22rem] w-full rounded-3xl border border-gold-200 dark:border-stone-700"
+            />
+          </div>
 
           <MotionDiv
             className="relative rounded-3xl border border-gold-300/60 bg-white/85 p-7 dark:border-stone-700 dark:bg-stone-900/80"
@@ -74,7 +97,7 @@ function VenueSection({ address, mapEmbed, directionsUrl }) {
             whileHover="hover"
           >
             <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-gold-700 dark:text-gold-300">
-              Venue Details
+              {activeVenue.title}
             </p>
             <h3 className="mt-2 font-display text-3xl text-stone-800 dark:text-stone-100">
               Address
@@ -86,9 +109,9 @@ function VenueSection({ address, mapEmbed, directionsUrl }) {
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-300" />
             </div>
 
-            <p className="mt-4 leading-relaxed text-stone-600 dark:text-stone-300">{address}</p>
+            <p className="mt-4 leading-relaxed text-stone-600 dark:text-stone-300">{activeVenue.address}</p>
             <MotionA
-              href={directionsUrl}
+              href={activeVenue.directionsUrl}
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold-300/70 bg-ivory-50 px-5 py-2.5 text-sm font-semibold tracking-[0.08em] text-gold-700 transition-colors hover:text-blush-700 dark:border-stone-700 dark:bg-stone-800 dark:text-gold-300"

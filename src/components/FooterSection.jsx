@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { useAnimationSystem } from "../animations"
 import Reveal from "./Reveal"
 import { FiInstagram, FiMail, FiPhone } from "react-icons/fi"
+import { FaWhatsapp } from "react-icons/fa";
 
 const MotionA = motion.a
 
@@ -60,7 +61,7 @@ function FooterSection({ contact, bride, groom }) {
             {contact.email}
           </MotionA>
           <MotionA
-            href="https://instagram.com"
+            href="https://www.instagram.com/arju_n.ravee_ndran/"
             target="_blank"
             rel="noreferrer"
             className="inline-flex min-w-[170px] items-center justify-center gap-2 rounded-full border border-gold-200/65 bg-white/88 px-4 py-2.5 transition-all duration-200 hover:border-gold-300 hover:bg-ivory-50 hover:text-gold-700 dark:border-stone-700 dark:bg-stone-800/90 dark:hover:border-gold-500/40 dark:hover:text-gold-300"
@@ -71,6 +72,19 @@ function FooterSection({ contact, bride, groom }) {
           >
             <FiInstagram />
             Instagram
+          </MotionA>
+          <MotionA
+            href="https://wa.me/919446722008"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-w-[170px] items-center justify-center gap-2 rounded-full border border-gold-200/65 bg-white/88 px-4 py-2.5 transition-all duration-200 hover:border-gold-300 hover:bg-ivory-50 hover:text-gold-700 dark:border-stone-700 dark:bg-stone-800/90 dark:hover:border-gold-500/40 dark:hover:text-gold-300"
+            variants={animations.buttonHover}
+            initial="rest"
+            whileHover="hover"
+            aria-label="WhatsApp"
+          >
+            <FaWhatsapp />
+            WhatsApp
           </MotionA>
         </div>
 
