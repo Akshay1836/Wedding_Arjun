@@ -109,26 +109,47 @@ function GallerySection({ images, bride, groom }) {
         </Reveal>
 
         <MotionDiv
-          className="mt-14 grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-7 lg:gap-8"
+          className="mt-14 grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:gap-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
           {images.map((image, index) => {
-            const isAccent = index % 5 === 0
+            const layoutClasses = [
+              "md:col-span-2",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-1",
+              "md:col-span-1",
+            ]
+            const aspectClasses = [
+              "aspect-[4/3]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+              "aspect-[4/5]",
+            ]
+            const layoutClass = layoutClasses[index] ?? "md:col-span-1"
+            const aspectClass = aspectClasses[index] ?? "aspect-[4/5]"
             return (
             <MotionDiv
               key={image.src}
               variants={itemVariants}
-              className={isAccent ? "md:col-span-2 md:row-span-1" : ""}
+              className={layoutClass}
             >
               <MotionButton
                 type="button"
                 onClick={() => setSelectedIndex(index)}
-                className={`group relative w-full overflow-hidden rounded-3xl border border-white/50 backdrop-blur-sm transition-all duration-700 hover:border-gold-300/80 dark:border-stone-700/40 dark:hover:border-gold-500 ${
-                  isAccent ? "aspect-video" : "aspect-[3/4]"
-                }`}
+                className={`group relative w-full overflow-hidden rounded-3xl border border-white/50 backdrop-blur-sm transition-all duration-700 hover:border-gold-300/80 dark:border-stone-700/40 dark:hover:border-gold-500 ${aspectClass}`}
                 aria-label={`Open image ${index + 1}`}
                 variants={animations.cardHover}
                 initial="rest"

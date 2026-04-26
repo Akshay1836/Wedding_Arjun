@@ -135,6 +135,10 @@ export const galleryImages = [
     src: IMG9,
     alt: "Wedding moment 9",
   },
+    {
+    src: IMG3,
+    alt: "Wedding moment 10",
+  },
 ]
 
 export const dressDetails = [
