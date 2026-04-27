@@ -68,20 +68,7 @@ export const storyMoments = [
 ]
 
 export const events = [
-  {
-    name: "Mehendi",
-    date: "May 15, 2026",
-    time: "4:00 PM onwards",
-    venue: "North Paravur, Ernakulam",
-    mapUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam",
-  },
-  {
-    name: "Haldi",
-    date: "May 16, 2026",
-    time: "10:30 AM onwards",
-    venue: "North Paravur, Ernakulam",
-    mapUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam",
-  },
+
   {
     name: "Wedding Ceremony",
     date: "May 17, 2026",
