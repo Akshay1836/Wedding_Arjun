@@ -75,49 +75,52 @@ function EventsSection({ events }) {
 
         <div className="mt-14">
           <div className="mx-auto max-w-7xl px-2 md:px-6">
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:place-items-center">
               {events.map((event, index) => (
                 <Reveal key={event.name}>
                   <MotionDiv
-                    className="group relative w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-white/60 bg-white/70 p-6 text-left shadow-lg shadow-gold-100/10 transition duration-500 hover:-translate-y-1 hover:border-gold-200 hover:bg-white dark:border-stone-700/60 dark:bg-stone-900/80 dark:shadow-stone-800/30"
+                    className="group relative w-full max-w-[42rem] overflow-hidden rounded-[2rem] border border-white/60 bg-white/80 p-8 text-left shadow-[0_35px_100px_-60px_rgba(212,175,106,0.8)] transition duration-500 hover:-translate-y-1 hover:border-gold-200 hover:bg-white dark:border-stone-700/60 dark:bg-stone-900/80 dark:shadow-[0_35px_100px_-60px_rgba(0,0,0,0.6)]"
                     variants={animations.cardHover}
                     initial="rest"
                     whileHover="hover"
                   >
                     <div
-                      className="pointer-events-none absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-white to-amber-50 opacity-80 dark:from-stone-900 dark:to-stone-800"
+                      className="pointer-events-none absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-white to-amber-50 opacity-90 dark:from-stone-900 dark:to-stone-800"
                       aria-hidden="true"
                     />
 
-                    <div className="relative flex items-center justify-between gap-3">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gold-300/70 bg-ivory-50 text-xl text-gold-700 dark:border-stone-600/60 dark:bg-stone-900/85 dark:text-gold-300">
-                        <span aria-hidden="true">{EVENT_ICONS[index % EVENT_ICONS.length]}</span>
+                    <div className="relative flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-[1.25rem] border border-gold-300/70 bg-ivory-50 text-2xl text-gold-700 dark:border-stone-600/60 dark:bg-stone-900/85 dark:text-gold-300">
+                          <span aria-hidden="true">{EVENT_ICONS[index % EVENT_ICONS.length]}</span>
+                        </div>
+                        <div>
+                          <p className="text-lg font-semibold text-stone-900 dark:text-ivory-100">
+                            {event.name}
+                          </p>
+                          <p className="mt-1 text-sm uppercase tracking-[0.32em] text-gold-700 dark:text-gold-300">
+                            {event.date}
+                          </p>
+                        </div>
                       </div>
-                      <span className="rounded-full bg-gold-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold-700 dark:bg-gold-200/10 dark:text-gold-300">
-                        {event.date}
-                      </span>
+
+                      <div className="rounded-full bg-gold-100 px-4 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-gold-800 dark:bg-gold-200/10 dark:text-gold-300">
+                        {event.time}
+                      </div>
                     </div>
 
-                    <h3 className="mt-6 text-2xl font-semibold tracking-tight text-stone-900 dark:text-ivory-100">
-                      {event.name}
-                    </h3>
-
-                    <p className="mt-4 text-sm leading-6 text-stone-600 dark:text-stone-300">
+                    <p className="mt-8 text-lg font-semibold leading-8 text-stone-800 dark:text-ivory-100">
                       {event.venue}
                     </p>
-
-                    <div className="mt-5 flex items-center gap-2 text-sm font-medium text-stone-700 dark:text-stone-200">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-gold-200/10 dark:text-gold-300">
-                        <span aria-hidden="true">⏰</span>
-                      </span>
-                      <span>{event.time}</span>
-                    </div>
+                    <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
+                      {event.address}
+                    </p>
 
                     <MotionA
                       href={event.mapUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-gold-200/80 bg-gold-50 px-4 py-2 text-sm font-semibold text-gold-800 transition hover:bg-gold-100 hover:text-gold-900 dark:border-gold-300/30 dark:bg-gold-500/10 dark:text-gold-200 dark:hover:bg-gold-500/20"
+                      className="mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-gold-200/80 bg-gold-50 px-5 py-3 text-sm font-semibold text-gold-800 transition hover:bg-gold-100 hover:text-gold-900 dark:border-gold-300/30 dark:bg-gold-500/10 dark:text-gold-200 dark:hover:bg-gold-500/20"
                       variants={animations.buttonHover}
                       initial="rest"
                       whileHover="hover"

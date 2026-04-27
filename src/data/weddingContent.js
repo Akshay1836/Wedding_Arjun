@@ -68,20 +68,21 @@ export const storyMoments = [
 ]
 
 export const events = [
-
   {
     name: "Wedding Ceremony",
     date: "May 17, 2026",
-    time: "9:45 AM - 10.45 AM",
-    venue: "North Paravur, Ernakulam",
-    mapUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam",
+    time: "9:45 AM - 10:45 AM",
+    venue: "Central Auditorium",
+    address: "Central Auditorium, N.Paravur, Ernakulam, Kerala",
+    mapUrl: "https://maps.google.com/?q=Central+Auditorium+N.Paravur+Ernakulam",
   },
   {
     name: "Reception",
     date: "May 17, 2026",
     time: "5:00 PM - 8:00 PM",
-    venue: "North Paravur, Ernakulam",
-    mapUrl: "https://maps.google.com/?q=North+Paravur+Ernakulam",
+    venue: "Treesa Garden Auditorium",
+    address: "Treesa Garden Auditorium, Perumbadanna, N.Paravur",
+    mapUrl: "https://maps.google.com/?q=Treesa+Garden+Auditorium+Perumbadanna+N.Paravur",
   },
 ]
 
