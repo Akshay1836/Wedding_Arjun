@@ -132,5 +132,6 @@ export const galleryImages = [
 export const dressDetails = [
   "Pastel or neutral tones are encouraged.",
   "Traditional or formal attire for ceremony and reception.",
-  "Please avoid bright neon shades and heavy glitter.",
+  "Comfortable footwear for dancing and walking."
+
 ]
