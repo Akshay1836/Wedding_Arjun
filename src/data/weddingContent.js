@@ -47,24 +47,41 @@ export const weddingInfo = {
 
 export const storyMoments = [
   {
-    year: "2008",
-    title: "A Quiet First Meeting",
+    year: "School Days",
+    title: "Where It All Began",
     description:
-      "We met at a bookstore cafe on a rainy evening and talked until closing time.",
-  },
-   {
-    year: "2013",
-    title: "The Proposal",
-    description:
-      "At sunrise by the lake, one question turned every day after into a celebration.",
+      "Two young hearts first crossed paths during their school days—innocent, and unaware of what the future had in store.",
   },
   {
-    year: "2021",
-    title: "Cities, Flights, and Long Calls",
+    year: "A Pause",
+    title: "A Pause in the Story",
     description:
-      "Distance taught us patience, laughter, and how to build a life across time zones.",
+      "Life took them on different paths, and for a while, they went their separate ways—holding onto memories, yet growing individually.",
   },
- 
+  {
+    year: "Degree Days",
+    title: "Destiny Brings Them Back",
+    description:
+      "Years later, during their degree days, fate stepped in once again. What began as reconnecting turned into something deeper, stronger, and undeniable.",
+  },
+  {
+    year: "Growing Together",
+    title: "Growing Together",
+    description:
+      "Through time, distance, and life’s many ups and downs, they stood by each other—learning, growing, and choosing one another every single day.",
+  },
+  {
+    year: "Everlasts",
+    title: "A Love That Lasts",
+    description:
+      "What blossomed from friendship turned into a bond built on trust, understanding, and endless love—one that stood strong through it all.",
+  },
+  {
+    year: "Today",
+    title: "Forever Begins Now",
+    description:
+      "Today, Aiswarya and Arjun take the next step in their journey—hand in hand, as best friends and soulmates, ready to build a lifetime of love together.",
+  },
 ]
 
 export const events = [
