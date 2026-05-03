@@ -103,7 +103,7 @@ function RSVPSection() {
             <SectionTitle
               eyebrow={<span className="bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 bg-clip-text text-transparent">RSVP</span>}
               title={<span className="text-gold-700 dark:text-gold-300">Will You Join Us?</span>}
-              subtitle={<span className="text-stone-500 dark:text-stone-300">Please respond before November 20, 2026.</span>}
+              subtitle={<span className="text-stone-500 dark:text-stone-300">Please respond before May 15, 2026.</span>}
             />
             <div className="my-4 h-px w-24 bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-70" />
           </div>
